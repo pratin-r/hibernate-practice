@@ -1,4 +1,4 @@
-package org.example.crudop;
+package org.example.concepts;
 import org.example.student.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

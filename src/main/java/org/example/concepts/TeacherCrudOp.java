@@ -1,4 +1,4 @@
-package org.example.crudop;
+package org.example.concepts;
 
 import org.example.laptop.Laptop;
 import org.example.teacher.Teacher;
@@ -8,9 +8,8 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Arrays;
-import java.util.List;
 
-public class CrudOpTeacher {
+public class TeacherCrudOp {
     public static void main(String[] args) {
         Laptop l1 = new Laptop(1,"Asus","Tuff","RTX 3060Ti",16);
         Laptop l2 = new Laptop(2,"Asus","ROG","RTX 3080Ti",16);
