@@ -1,7 +1,10 @@
-1) .persist() method in Hibernate is used to transition a transient entity instance into a persistent state.
+<----- NOTES ----->
+
+1) .persist(Object o) method in Hibernate is used to transition a transient entity instance into a persistent state.
     INSERT operation happens only when the transaction is committed using .commit().
 
-2) .find() method allows us to fetch the value from database.
+2) .find(Class <T> aClass, Object o) method allows us to fetch the value from database. It does eager loading.
+    .getReference(Class <T> aClass, Object o) method does the same and does fully lazy loading (Follows JPA)
 
 3) .merge() method first checks if the record is already present in the table. If so, it updates the value.
     If there is no value in the table, it adds the data given as a new record.
