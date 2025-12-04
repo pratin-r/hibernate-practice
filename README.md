@@ -1,0 +1,1 @@
+Repository for practicing Hibernate ORM with various examples, configurations, and use cases. Includes basic CRUD operations, mappings, and queries for learning how to integrate Hibernate into Java applications.
