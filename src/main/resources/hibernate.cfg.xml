@@ -15,7 +15,7 @@
             - add missing columns to an existing table
             It only updates the schema, NOT the data.
         -->
-<!--        <property name="hibernate.hbm2ddl.auto">update</property>-->
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!--
             hibernate.hbm2ddl.auto=create will:
@@ -24,11 +24,19 @@
             - Recreate the entire schema from scratch.
             It does not update the data, but it removes existing schema and creates a fresh schema.    
         -->
-        <property name="hibernate.hbm2ddl.auto">create</property>
+<!--        <property name="hibernate.hbm2ddl.auto">create</property>-->
         
         <!-- this line will show what query is done on the terminal -->
         <property name="hibernate.show_sql">true</property>
         <!-- shows formatted sql query -->
 <!--        <property name="hibernate.format_sql">true</property>-->
+
+        <!-- Below three properties are the ones which enables the L2Caching -->
+        <!--(i)-->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <!--(ii)-->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.internal.JCacheRegionFactory</property>
+        <!--(iii)-->
+        <property name="hibernate.jakarta.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</property>
     </session-factory>
 </hibernate-configuration>
