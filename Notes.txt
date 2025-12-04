@@ -1,0 +1,97 @@
+1) .persist() method in Hibernate is used to transition a transient entity instance into a persistent state.
+    INSERT operation happens only when the transaction is committed using .commit().
+
+2) .find() method allows us to fetch the value from database.
+
+3) .merge() method first checks if the record is already present in the table. If so, it updates the value.
+    If there is no value in the table, it adds the data given as a new record.
+
+4).remove() method removes the particular data from database.
+
+5) A transient object is an entity instance that:
+    i) is created with new
+    ii) has no database record
+    iii) is not managed by Hibernate (Session / EntityManager)
+    iv) has no persistent identity (no primary key assigned by DB)
+
+6) A persistent object is an entity instance that is currently managed
+    by an active Hibernate Session and is synchronized with the database.
+    An object becomes persistent when we use .persist() method.
+
+7) A detached object is an entity that has a row in the database
+    but is no longer managed by Hibernate, so its changes are not tracked.
+
+8) Entity lifecycle
+    Transient ---> Persistent ---> Detached
+    Transient: Created with new (object creation), not tracked.
+    Persistent: After calling session.save() or session.persist().
+                Hibernate assigns an ID (if DB-generated) and tracks changes.
+    Detached: After the session is closed or entity is evicted.
+
+9) Hibernate cannot change the name of existing column or table name. You need to manually change it using SQL.
+
+<--- IMPORTANT POINT TO UNDERSTAND --->
+
+Think entity as a whole structure where you can add all assets or columns (Use @Embeddable to add user-defined class)
+and map it to a table using @Table
+
+10) @Entity
+Purpose: Marks a Java class as a persistent entity (i.e., Hibernate should manage it).
+
+What it does:
+    i) Tells Hibernate: “This class represents a table in the database.”
+    ii) Without @Entity, Hibernate will not store objects of this class.
+
+Requirements:
+    i) Must have a no-argument constructor (public or protected).
+    ii) Must have an identifier field annotated with @Id.
+
+    Example:
+    @Entity
+    public class Student {
+
+        @Id
+        private int id;
+        private String name;
+    }
+
+Here, Hibernate will automatically map the class Student to a table student by default (class name becomes table name).
+
+    @Table
+
+Purpose: Specifies the actual table name and schema in the database.
+
+@Table is optional.
+If you don't use it, Hibernate uses the class name as the table name.
+
+    Example:
+    @Entity
+    @Table(name = "students_data")
+    public class Student {
+        @Id
+        private int id;
+        private String name;
+    }
+
+This tells Hibernate:
+✔ Map entity Student → table students_data
+
+    @Embeddable:
+    Embeddable in Hibernate/JPA is used when you want to EMBED A CLASS inside an entity (clubbing it to an entity)
+    RATHER THAN MAPPING IT AS A SEPARATE TABLE.
+
+11) IMPORTANT ONE
+
+    fetch = FetchType.LAZY or fetch = FetchType.EAGER applies only to relationship annotations like
+        - @OneToOne
+        - @OneToMany
+        - @ManyToOne
+        - @ManyToMany
+
+    Hibernate strongly discourages EAGER for collection mapping
+
+    LAZY means Load only Entity now. Load related entities (Relationship annotations) later if accessed.
+    EAGER means Load Entity + its related entities (Relationship annotations) immediately.
+
+
+
