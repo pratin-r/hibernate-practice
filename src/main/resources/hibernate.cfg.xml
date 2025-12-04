@@ -1,0 +1,34 @@
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <!-- sql uses varchar but postgresql uses text. in order to use the proper dialect, we need to mention it -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/demodb</property>
+        <property name="hibernate.connection.username">trialuser1</property>
+        <property name="hibernate.connection.password">trial1</property>
+
+        <!-- hbm2ddl stands for Hibernate Mapping to Data Definition Language.    -->
+
+        <!--
+            hibernate.hbm2ddl.auto=update will:
+            - create the table if it does not exist
+            - add missing columns to an existing table
+            It only updates the schema, NOT the data.
+        -->
+<!--        <property name="hibernate.hbm2ddl.auto">update</property>-->
+
+        <!--
+            hibernate.hbm2ddl.auto=create will:
+            - Drop the existing tables if they already exist.
+            - Create new tables based on the current entity mappings.
+            - Recreate the entire schema from scratch.
+            It does not update the data, but it removes existing schema and creates a fresh schema.    
+        -->
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        
+        <!-- this line will show what query is done on the terminal -->
+        <property name="hibernate.show_sql">true</property>
+        <!-- shows formatted sql query -->
+<!--        <property name="hibernate.format_sql">true</property>-->
+    </session-factory>
+</hibernate-configuration>
